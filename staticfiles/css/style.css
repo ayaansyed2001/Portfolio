@@ -1,0 +1,633 @@
+/* Custom CSS Variables */
+:root {
+    --bs-primary: #4c6ef5;
+    --bs-secondary: #3b4a6b;
+    --bs-success: #51cf66;
+    --bs-info: #22d3ee;
+    --bs-warning: #ffd43b;
+    --bs-danger: #ff6b6b;
+    --bs-light: #f8f9fa;
+    --bs-dark: #343a40;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+/* Base Styles */
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Main content wrapper */
+main {
+    flex: 1;
+}
+
+/* Custom Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e3f2fd 0%, #f0f9ff 100%);
+    padding-top: 80px;
+}
+
+/* Navigation */
+.navbar {
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+}
+
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bs-primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: var(--bs-primary) !important;
+}
+
+/* Project Cards */
+.project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Client Logos */
+.clients-section {
+    background-color: #f8f9fa;
+}
+
+.client-logo {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+    opacity: 0.6;
+}
+
+.client-logo:hover {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+.client-img {
+    height: 60px;
+    width: auto;
+    max-width: 120px;
+}
+
+/* Contact Section Full Width */
+#contact {
+    background-color: var(--bs-secondary) !important;
+    min-height: 100vh;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 80px 0 120px 0;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    position: relative;
+}
+
+#contact .container-fluid {
+    max-width: none;
+    padding: 0 15px;
+}
+
+.interactive-card {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.interactive-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+.interactive-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-1);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.interactive-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Animated Profile Icon */
+.profile-icon {
+    background: var(--gradient-1);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    animation: pulse 2s infinite;
+}
+
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.profile-icon:hover {
+    transform: rotate(360deg) scale(1.1);
+    background: var(--gradient-2);
+}
+
+.profile-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 2s infinite;
+}
+
+@keyframes ripple {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.4);
+        opacity: 0;
+    }
+}
+
+/* Interactive Skill Badges */
+.skill-badge {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.skill-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.skill-badge:hover::before {
+    left: 100%;
+}
+
+/* Feature Cards with Different Gradients */
+.feature-card-1 {
+    background: var(--gradient-1);
+}
+
+.feature-card-2 {
+    background: var(--gradient-2);
+}
+
+.feature-card-3 {
+    background: var(--gradient-3);
+}
+
+.feature-card {
+    border: none;
+    border-radius: 20px;
+    color: white;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px) rotate(2deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.feature-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+}
+
+.feature-card:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Tech Stack Progress Bars */
+.tech-progress {
+    height: 8px;
+    border-radius: 10px;
+    background: #e9ecef;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.tech-progress-bar {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 2s ease-in-out;
+    background: var(--gradient-4);
+    position: relative;
+}
+
+.tech-progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Typing Animation */
+.typing-text::after {
+    content: '|';
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Interactive Resume Button */
+.resume-btn {
+    background: var(--gradient-1);
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 2rem;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.resume-btn:hover {
+    background: var(--gradient-2);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.resume-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+}
+
+.resume-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Floating Animation */
+.float-animation {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Fade In Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger Animation */
+.stagger-1 {
+    animation-delay: 0.1s;
+}
+
+.stagger-2 {
+    animation-delay: 0.2s;
+}
+
+.stagger-3 {
+    animation-delay: 0.3s;
+}
+
+/* Interactive Icon Hover */
+.interactive-icon {
+    transition: all 0.3s ease;
+}
+
+.interactive-card:hover .interactive-icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .interactive-card:hover {
+        transform: translateY(-5px) scale(1.01);
+    }
+
+    .profile-icon {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Custom Scrollbar for Tech Stack */
+.tech-stack-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tech-stack-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.tech-stack-container::-webkit-scrollbar-thumb {
+    background: var(--gradient-1);
+    border-radius: 10px;
+}
+
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-primary:hover {
+    background-color: #3b5bdb;
+    border-color: #3b5bdb;
+}
+
+.btn-outline-primary {
+    color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+/* Utility Classes */
+.text-secondary-custom {
+    color: var(--bs-secondary) !important;
+}
+
+.bg-purple {
+    background-color: #6f42c1 !important;
+}
+
+/* Footer Fix */
+footer {
+    margin-top: -60px;
+    width: 100%;
+    background-color: var(--bs-dark) !important;
+    color: #fff !important;
+    padding: 1rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-to-top.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 768px) {
+    .hero-section {
+        padding-top: 100px;
+    }
+
+    .display-2 {
+        font-size: 2.5rem;
+    }
+
+    .client-img {
+        height: 40px;
+        max-width: 100px;
+    }
+
+    #contact {
+        padding: 40px 0 100px 0;
+        margin-left: 0;
+        width: 100%;
+    }
+
+    footer {
+        margin-top: -40px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        padding-top: 120px;
+    }
+
+    .display-2 {
+        font-size: 2rem;
+    }
+
+    .display-4 {
+        font-size: 2rem;
+    }
+
+    .lead {
+        font-size: 1rem;
+    }
+}
+
+/* Additional Hover Effects */
+.card:hover {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+/* Badge Styles */
+.badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* Shadow Utilities */
+.shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+/* Custom Spacing */
+.py-5 {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+}
+
+/* Education/Internship Hover Effects */
+.hover-effect {
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 15px;
+}
+
+.hover-effect:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.edu-logo, .intern-logo {
+    max-height: 80px;
+    object-fit: contain;
+    border-radius: 10px;
+}
