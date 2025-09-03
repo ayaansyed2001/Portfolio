@@ -293,3 +293,126 @@ initInteractiveFeatures();
 
 // Initialize page visibility handling
 initPageVisibility();
+
+// JavaScript for Interactive Elements
+document.addEventListener('DOMContentLoaded', function() {
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Animate progress bars when visible
+    const progressObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const progressBars = entry.target.querySelectorAll('.tech-progress-bar');
+                progressBars.forEach(bar => {
+                    setTimeout(() => {
+                        bar.style.width = bar.dataset.width;
+                    }, 500);
+                });
+            }
+        });
+    }, observerOptions);
+
+    const techStackCard = document.querySelector('.tech-stack-container');
+    if (techStackCard) {
+        progressObserver.observe(techStackCard);
+    }
+
+    // Skill badge tooltips
+    document.querySelectorAll('.skill-badge').forEach(badge => {
+        badge.addEventListener('mouseenter', function(e) {
+            const tooltip = this.dataset.tooltip;
+            if (tooltip) {
+                const tooltipEl = document.createElement('div');
+                tooltipEl.className = 'custom-tooltip';
+                tooltipEl.textContent = tooltip;
+                tooltipEl.style.cssText = `
+                    position: absolute;
+                    background: #333;
+                    color: white;
+                    padding: 8px 12px;
+                    border-radius: 6px;
+                    font-size: 12px;
+                    z-index: 1000;
+                    opacity: 0;
+                    transition: opacity 0.3s;
+                    pointer-events: none;
+                    top: ${e.pageY - 40}px;
+                    left: ${e.pageX - 30}px;
+                `;
+                document.body.appendChild(tooltipEl);
+                setTimeout(() => tooltipEl.style.opacity = '1', 10);
+                
+                this.addEventListener('mouseleave', () => {
+                    tooltipEl.remove();
+                }, { once: true });
+            }
+        });
+    });
+
+    // Typing animation for title
+    const title = document.getElementById('aboutTitle');
+    if (title) {
+        const text = title.textContent;
+        title.textContent = '';
+        title.classList.remove('typing-text');
+        
+        let i = 0;
+        const typeInterval = setInterval(() => {
+            title.textContent += text[i];
+            i++;
+            if (i === text.length) {
+                clearInterval(typeInterval);
+                title.classList.add('typing-text');
+            }
+        }, 100);
+    }
+
+    // Interactive card click effects
+    document.querySelectorAll('.feature-card').forEach(card => {
+        card.addEventListener('click', function() {
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    });
+});
+
+// Resume download function
+function downloadResume() {
+    // Add download logic here
+    const button = document.querySelector('.resume-btn');
+    button.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Downloading...';
+    
+    setTimeout(() => {
+        button.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" 
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
+                 class="me-2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7,10 12,15 17,10"></polyline>
+                <line x1="12" x2="12" y1="15" y2="3"></line>
+            </svg>
+            Download Resume
+        `;
+        // Add actual download logic here
+        console.log('Resume download triggered');
+    }, 2000);
+}
