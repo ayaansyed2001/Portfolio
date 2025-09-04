@@ -13,6 +13,13 @@ def home(request):
                 'image':'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
                 'technologies' :['HTML', 'CSS', 'JavaScript', 'Django'],
                 
+            },
+            {
+                'id':2,
+                'title': 'TO-DO Ninja App',
+                'description': 'A task management app to help users organize their daily activities.',
+                'image':'/static/images/1234.png',
+                'technologies' :['HTML', 'CSS', 'JavaScript', 'Django'],
             }
         ],
         'education': [
