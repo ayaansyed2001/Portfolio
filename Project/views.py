@@ -12,6 +12,8 @@ def home(request):
                 'description': 'A personal portfolio website to showcase my projects and skills.',
                 'image':'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
                 'technologies' :['HTML', 'CSS', 'JavaScript', 'Django'],
+                "live_url":"https://portfolio-kkhg.onrender.com/",
+                "github_url":"https://github.com/ayaansyed2001/Portfolio"
                 
             },
             {
@@ -20,6 +22,8 @@ def home(request):
                 'description': 'A task management app to help users organize their daily activities.',
                 'image':'/static/images/1234.png',
                 'technologies' :['HTML', 'CSS', 'JavaScript', 'Django'],
+                "live_url":"https://to-do-ninja.onrender.com/",
+                "github_url":"https://github.com/ayaansyed2001/To-Do-Ninja"
             }
         ],
         'education': [
