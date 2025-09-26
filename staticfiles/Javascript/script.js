@@ -396,23 +396,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Resume download function
 function downloadResume() {
-    // Add download logic here
-    const button = document.querySelector('.resume-btn');
-    button.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Downloading...';
-    
-    setTimeout(() => {
-        button.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" 
-                 viewBox="0 0 24 24" fill="none" stroke="currentColor" 
-                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" 
-                 class="me-2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7,10 12,15 17,10"></polyline>
-                <line x1="12" x2="12" y1="15" y2="3"></line>
-            </svg>
-            Download Resume
-        `;
-        // Add actual download logic here
-        console.log('Resume download triggered');
-    }, 2000);
+    const resumePath = '/static/resume/AyaanSaif_Resume.pdf';
+    fetch(resumePath)
+        .then(response => {
+            if (response.ok) {
+                return response.blob();
+            }
+            throw new Error('Resume file not found');
+        })
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Resume.pdf';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        })
+        .catch(error => {
+            console.error('Error downloading resume:', error);
+            alert('Sorry, the resume file is currently unavailable.');
+        });
 }
