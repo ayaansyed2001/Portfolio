@@ -396,7 +396,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Resume download function
 function downloadResume() {
-    const resumePath = '/static/resume/AyaanSaif_Resume.pdf';
+    const resumePath = '/static/resume/Ayaan_Syed__Resume.pdf';
     fetch(resumePath)
         .then(response => {
             if (response.ok) {
@@ -408,7 +408,7 @@ function downloadResume() {
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'Resume.pdf';
+            a.download = 'Ayaan_Syed_Resume.pdf';
             document.body.appendChild(a);
             a.click();
             window.URL.revokeObjectURL(url);
